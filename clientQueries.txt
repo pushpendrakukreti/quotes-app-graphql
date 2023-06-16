@@ -59,3 +59,28 @@ query getQuoteByUser($quoteby:ID!){
     name
   }
 }
+
+QUERY VARIABLES
+{
+  "quoteby": "23122"
+}
+
+------------------------------------
+mutation createUser($userNew:UserInput!){
+  user:signupUserDummy(userNew:$userNew){    //"user" is alias name
+    id
+    email
+    firstName
+    lastName
+  }
+}
+
+QUERY VARIABLES
+{
+  "userNew" : {
+    "firstName": "PK",
+    "lastName": "ManGo",
+    "email": "pk@pk.com",
+    "password": "12345"
+  }
+}

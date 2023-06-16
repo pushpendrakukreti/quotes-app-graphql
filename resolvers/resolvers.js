@@ -1,4 +1,5 @@
 import { users, quotes } from "../fakedb.js"
+import { randomBytes } from 'crypto'
 
 const resolvers = {
     Query: {
@@ -10,6 +11,17 @@ const resolvers = {
 
     User: {
         quotes: (user) => quotes.filter(quote => quote.by == user.id)
+    },
+
+    Mutation: {
+        signupUserDummy: (_, { userNew }) => {
+            const id = randomBytes(5).toString("hex")
+            users.push({
+                id,
+                ...userNew
+            })
+            return users.find(user => user.id == id)
+        }
     }
 }
 
